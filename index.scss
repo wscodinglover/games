@@ -1,3 +1,164 @@
+.list-container{
+  display: flex;
+  border: 2px solid #DCDFE6;
+  border-radius: 5px;
+  padding: 0 20px 20px 0;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  &__item{
+    box-sizing: border-box;
+    margin: 20px 0 0 20px;
+    width: calc((100% - 40px) / 2);
+    border: 1px solid #E4E7ED;
+    #clock {
+      margin: 0 auto;
+    }
+  }
+}
+
+@mixin btn-common {
+  display: inline-block;
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  background: #fff;
+  border: 1px solid #dcdfe6;
+  color: #606266;
+  -webkit-appearance: none;
+  text-align: center;
+  box-sizing: border-box;
+  outline: none;
+  margin: 0;
+  transition: .1s;
+  font-weight: 500;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  padding: 12px 20px;
+  font-size: 14px;
+  border-radius: 4px;
+}
+
+.calendar-container {
+  width: 600px;
+  margin: 10px auto 0;
+  padding: 10px;
+  border: 1px solid #aaa;
+  .calendar-title {
+    display: flex;
+    padding: 0 10px 10px;
+    justify-content: space-between;
+    border-bottom: 1px solid #ccc;
+    &__left{
+      color: #fff;
+    }
+    &__right {
+      &-up, &-down {
+        @include btn-common;
+        &:hover {
+          color: #fff;
+          background-color: #409eff;
+          border-color: #409eff;
+          cursor: pointer;
+        }
+      }
+      &-up{
+        margin-right: 10px;
+        color: #409eff;
+        background: #ecf5ff;
+        border-color: #b3d8ff;
+      }
+      &-down {
+        color: #409eff;
+        background: #ecf5ff;
+        border-color: #b3d8ff;
+      }
+    }
+  }
+  .calendar-header {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px 0;
+    color: #fffaaa;
+    &__item:first-child,
+    &__item:last-child {
+      color: #fff;
+    }
+  }
+
+  .calendar-content {
+    color: #fff;
+    &__table {
+      border: 1px solid #aaa;
+      width: 100%;
+      text-align: center;
+      table-layout: fixed; //阻止td自动撑开
+      // border-collapse:collapse;
+      &-td {
+        border: 1px solid #aaa;
+        height: 60px;
+        color:#fff;
+        &__now {
+          background: #67C23A;
+        }
+        &__num {
+          font-size: 18px;
+          color: #fff;
+          padding-left: 10px;
+        }
+        &__gray {
+          background: #C0C4CC;
+          color: #fff;
+        }
+        &__str {
+          font-size: 12px;
+          color: #fff;
+          &-gray{
+            font-size: 13px;
+            color:#fff;
+          }
+        }
+        &__holiday{
+          font-size: 12px;
+          color:#F56C6C;
+        }
+        &__week{
+          // background: #F56C6C;
+        }
+      }
+      &-td:hover {
+        background: #67C23A;
+        color: #000;
+      }
+    }
+  }
+}
+
+.github-corner:hover .octo-arm {
+  animation: octocat-wave 560ms ease-in-out
+}
+@keyframes octocat-wave {
+  0%, 100% {
+    transform: rotate(0)
+  }
+  20%, 60% {
+    transform: rotate(-25deg)
+  }
+  40%, 80% {
+    transform: rotate(10deg)
+  }
+}
+@media (max-width: 500px) {
+  .github-corner:hover .octo-arm {
+    animation: none
+  }
+  .github-corner .octo-arm {
+    animation: octocat-wave 560ms ease-in-out
+  }
+}
+
 /* Layout */
 body {
   margin: 0;
