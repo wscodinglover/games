@@ -129,7 +129,7 @@ function drawClock() {
     for (var i = 1; i <= 12; i++) {
       cxt.save();
       cxt.font = "36px Arial";
-      cxt.fillStyle =i%3==0 ? "#FFF" : "#000";
+      cxt.fillStyle = "#fff";
       cxt.textAlign = "center";
       cxt.textBaseline = "middle";
       // 先设置0,0点
@@ -557,27 +557,30 @@ function renderView(
       var solarTermsObj = "";
 
       if (dateNum - preMonthTotalDay <= 0) {
-        lunarDayObj = GetLunarDay(year, month, dayNum); //获取农历
+        const parseCalendar = calendar.solar2lunar(year, month, dayNum)
+        lunarDayObj = parseCalendar.IDayCn || ''; //获取农历
         festivalStr = getFestival(year, month - 1, dayNum); //节日
         holidayStr = getHoliday(month - 1, dayNum); //假日
-        solarTermsObj = SolarTerm(new Date(year, month - 1, dayNum)); // 节气
+        solarTermsObj = parseCalendar.Term || ''; // 节气
 
         // console.log("农历日期 pre：", year, month, dayNum, LunarDayStr);
       } else if (dateNum - preMonthTotalDay - currMonthTotalDay > 0) {
         // console.log("农历日期 next：", year, month + 2, dayNum);
-        lunarDayObj = GetLunarDay(year, month + 2, dayNum);
+        const parseCalendar = calendar.solar2lunar(year, month + 2, dayNum)
+        lunarDayObj = parseCalendar.IDayCn || ''; //获取农历
         festivalStr = getFestival(year, month + 1, dayNum);
         holidayStr = getHoliday(month + 1, dayNum);
-        solarTermsObj = SolarTerm(new Date(year, month + 1, dayNum)); // 节气
+        solarTermsObj = parseCalendar.Term || ''; // 节气
       } else {
         // console.log("农历日期 curr：", year, month + 1, dayNum);
-        lunarDayObj = GetLunarDay(year, month + 1, dayNum);
+        const parseCalendar = calendar.solar2lunar(year, month + 1, dayNum)
+        lunarDayObj = parseCalendar.IDayCn || ''; //获取农历
         festivalStr = getFestival(year, month, dayNum);
         holidayStr = getHoliday(month, dayNum);
-        solarTermsObj = SolarTerm(new Date(year, month, dayNum)); // 节气
+        solarTermsObj = parseCalendar.Term || ''; // 节气
       }
-      var solarTermsStr = solarTermsObj.value;
-      var lunarDayStr = lunarDayObj.date;
+      var solarTermsStr = solarTermsObj;
+      var lunarDayStr = lunarDayObj;
       // console.log("二十四节气： ", solarTermsObj, solarTermsStr);
 
       // console.log("农历日期： ", lunarDayObj);
